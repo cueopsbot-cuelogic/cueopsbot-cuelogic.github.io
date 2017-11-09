@@ -1,0 +1,73 @@
+{
+    "name": "voteapp2",     // Define Your Project Name
+    "scm": {                // Your Source Control Manager Details (eg. GitHub)
+        "organisation": "Your GitHub organisation Name",
+        "apiUrl": "https://api.github.com/",
+        "auth": {
+            "username": "GitHub username",
+            "password": "Github User's Password"
+        	},
+        "repos": [{                                  // Define Your GitHub Repositories for CI/CD.
+                "name": "GitHub Repository Name (For Eg. REPO-1)",   
+                "url": "Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-1.git)",
+    			"environments": [{                   // Define Your Deployment Environments details for REPO-1.
+			            "name": "Deployment Environment Name (eg. Production)",
+			            "branch": "Branch Name (eg. master)",
+			            "swarm_ip": "Swarm Manager IP",
+			            "cacert":"Swarm Manager ca certificate in base 64 encoded form for specified Environment (ca.pem).",
+    					"cert":"Swarm Manager cert certificate in base 64 encoded form for specified Environment (cert.pem)",
+    					"key":"Swarm Manager key certificate in base 64 encoded form for specified Environment (key.pem)"
+			        }
+			    ]
+            },
+            {
+                "name": "Your GitHub Repository Name (For Eg. REPO-2)",
+                "url": "Your Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-2.git)",
+    			"environments": [{                // Define Your Deployment Environments details for REPO-2.
+			            "name": "Deployment Environment Name (eg. staging)", 
+			            "branch": "Branch Name (eg. staging)",
+			            "swarm_ip": "Swarm Manager IP",
+			            "cacert":"Swarm Manager ca certificate in base 64 encoded form for specified Environment (ca.pem).",
+    					"cert":"Swarm Manager cert certificate in base 64 encoded form for specified Environment (cert.pem)",
+    					"key":"Swarm Manager key certificate in base 64 encoded form for specified Environment (key.pem)"
+			        },
+			        {
+			            "name": "Deployment Environment Name (eg. Develop)",
+			            "branch": "Branch Name (eg. develop)",
+			            "swarm_ip": "Swarm Manager IP",
+                        "cacert": "Swarm Manager ca certificate in base 64 encoded form for specified Environment (ca.pem).",
+    					"cert":"Swarm Manager cert certificate in base 64 encoded form for specified Environment (cert.pem)",
+    					"key":"Swarm Manager key certificate in base 64 encoded form for specified Environment (key.pem)"
+			        }
+			    ]
+            },
+            {
+                "name": "Your GitHub Repository Name (For Eg. REPO-3)",
+                "url": "Your Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-3.git)",
+    			"environments": [{                  // Define Your Deployment Environments details for REPO-3.
+			            "name": "Deployment Environment Name (eg. Production)",
+			            "branch": "Branch Name pointing to the specified Environment",
+			            "swarm_ip": "Swarm Manager IP of the specified Environment",
+			            "cacert":"Swarm Manager ca certificate in base 64 encoded form for the specified Environment (ca.pem).",
+    					"cert":"Swarm Manager cert certificate in base 64 encoded form for specified Environment (cert.pem)",
+    					"key":"Swarm Manager key certificate in base 64 encoded form for specified Environment (key.pem)"
+			        },
+			    ]
+            }
+        ],
+		"opsrepo":{       // Define Your OPS Github Repo containing Docker Compose files. 
+			"url": "OPS repo Url (For Ex. https://github.com/CuelogicTech/projectname-ops.git )",
+			"name": "OPS Repository Name (For Ex. projectname-ops)"
+		}
+    },
+     "slack": {          // Define Your Slack Details
+        "username": "Slack Username",
+        "channel": "#Slack-Channel Name", 
+        "token": "Slack Incoming Webhook Url (For Ex. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX) "
+    },
+    "dockerHub":{
+    	"username":"Your DockerHub Username",
+    	"password":"Your DockerHUb Password",
+    	"repo":"Your DockerHub Repo"
+    	}   
+}
