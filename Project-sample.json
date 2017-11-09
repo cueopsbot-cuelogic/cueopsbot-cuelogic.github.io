@@ -9,7 +9,7 @@
 		},
 		"repos": [{
 				"name": "GitHub Repository Name (For Eg. REPO-1)",
-				"url": "Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-1.git)",
+				"url": "Github Repository Url (For Eg. https://github.com/organisation/REPO-1.git)",
 				"environments": [{
 					"name": "Deployment Environment Name (eg. Production)",
 					"branch": "Branch Name (eg. master)",
@@ -21,7 +21,7 @@
 			},
 			{
 				"name": "Your GitHub Repository Name (For Eg. REPO-2)",
-				"url": "Your Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-2.git)",
+				"url": "Your Github Repository Url (For Eg. https://github.com/organisation/REPO-2.git)",
 				"environments": [{
 						"name": "Deployment Environment Name (eg. staging)",
 						"branch": "Branch Name (eg. staging)",
@@ -42,7 +42,7 @@
 			},
 			{
 				"name": "Your GitHub Repository Name (For Eg. REPO-3)",
-				"url": "Your Github Repository Url (For Eg. https://github.com/CuelogicTech/REPO-3.git)",
+				"url": "Your Github Repository Url (For Eg. https://github.com/organisation/REPO-3.git)",
 				"environments": [{
 					"name": "Deployment Environment Name (eg. Production)",
 					"branch": "Branch Name pointing to the specified Environment",
@@ -54,7 +54,7 @@
 			}
 		],
 		"opsrepo": {
-			"url": "OPS repo Url (For Ex. https://github.com/CuelogicTech/projectname-ops.git )",
+			"url": "OPS repo Url (For Ex. https://github.com/organisation/projectname-ops.git )",
 			"name": "OPS Repository Name (For Ex. projectname-ops)"
 		}
 	},
