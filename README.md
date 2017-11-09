@@ -2,5 +2,5 @@
 
 ## Sample Project Json file
 
-[For sample json file refer link:](./Project-sample.json)
+[Sample json file](./Project-sample.json)
 
