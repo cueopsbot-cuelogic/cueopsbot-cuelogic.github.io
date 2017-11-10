@@ -9,6 +9,13 @@ CueOps gives you out of the box services that assist you when building Microserv
    - A GitHub Bot account with access like it should be able to clone the repos, create webhooks etc.
    - Ops Repository containing all the Docker compose files.
    - Don't familiar with Docker compose files? You can find the sample docker compose file [here](./docker-compose.yml).
+
+## 2. Docker
+   - Application stack should be running on Docker. All you need is a Dockerfile residing into your repository. 
+   - Docker Swarm Mode. 
+   - Docker Hub username and password to upload the Docker Images.
+   - Docker Swarm Manager Certificates and IP. 
+   - 
    
    
 
