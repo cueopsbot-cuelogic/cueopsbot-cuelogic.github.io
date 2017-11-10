@@ -33,3 +33,4 @@ sudo rm -v client.csr server.csr
 chmod -v 0400 ca-key.pem key.pem server-key.pem
 #chmod -v 0444 key.pem
 chmod -v 0444 ca.pem server-cert.pem cert.pem
+
