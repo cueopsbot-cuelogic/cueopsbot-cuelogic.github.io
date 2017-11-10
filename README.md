@@ -30,11 +30,11 @@ CueOps gives you out of the box services that assist you when building Microserv
 To configure a webhook and obtain a URL, go to https://[your company].slack.com/services/new/incoming-webhook, select a
 channel you would like the messages to be posted to and click on "Add Incoming WebHooks Integration" button.
 
-![Step 1](/_images/slack_generate_webhook_url_1.png)
+![Step 1](https://raw.githubusercontent.com/StackStorm/st2contrib/master/_images/slack_generate_webhook_url_1.png)
 
 On the next page you will find an automatically generated webhook URL.
 
-![Step 2](/_images/slack_generate_webhook_url_2.png)
+![Step 2](https://raw.githubusercontent.com/StackStorm/st2contrib/master/_images/slack_generate_webhook_url_2.png)
    
    
 
