@@ -1,0 +1,133 @@
+version: "3.1"
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - frontend
+    labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-redis"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-redis"  
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "redis"     
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-db"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-db"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "db"
+  vote:
+    image: cueops/vote:master-1
+    ports:
+      - 5000:80
+    networks:
+      - frontend
+    depends_on:
+      - redis
+    labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-vote"
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+      labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-vote"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "vote"
+  result:
+    image: cueops/result:master-6
+    ports:
+      - 5001:80
+    networks:
+      - backend
+    depends_on:
+      - db
+    labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-result"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-result"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "result"
+
+  worker:
+    image: cueops/worker:master-1
+    networks:
+      - frontend
+      - backend
+    labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-worker"
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        com.docker.stack.namespace: "voteapp-dev"
+        com.docker.service.name: "voteapp-worker"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "worker"        
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
