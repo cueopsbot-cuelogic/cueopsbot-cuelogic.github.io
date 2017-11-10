@@ -35,6 +35,11 @@ channel you would like the messages to be posted to and click on "Add Incoming W
 On the next page you will find an automatically generated webhook URL.
 
 ![Step 2](https://raw.githubusercontent.com/StackStorm/st2contrib/master/_images/slack_generate_webhook_url_2.png)
+
+## 4. Jenkinsfile
+   - [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/)  is a text file that contains the definition of a Jenkins Pipeline and is checked into source control.
+   - [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/) should be checked into each source control repository to build the Continuous Integration pipeline.
+   - A sample [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/) can be found [here](./Jenkinsfile) with detailed description. 
    
    
 
