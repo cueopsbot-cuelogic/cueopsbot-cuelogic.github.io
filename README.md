@@ -35,8 +35,6 @@ channel you would like the messages to be posted to and click on "Add Incoming W
 On the next page you will find an automatically generated webhook URL.
 
 ![Step 2](/_images/slack_generate_webhook_url_2.png)
-
-### Obtaining Auth Token
    
    
 
