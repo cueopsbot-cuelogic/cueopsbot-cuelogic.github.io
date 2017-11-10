@@ -13,7 +13,7 @@ CueOps gives you out of the box services that assist you when building Microserv
 ## 2. Docker
    - Application stack should be running on Docker. All you need is a Dockerfile residing into your repository. 
    - [Docker Swarm Mode](https://docs.docker.com/engine/swarm/). 
-   - [Docker compose](https://docs.docker.com/compose/overview/). [Installation link:](https://docs.docker.com/compose/install/)
+   - [Docker compose](https://docs.docker.com/compose/overview/). Installation Link: [https://docs.docker.com/compose/install/]
    - [Docker Hub](https://hub.docker.com/) username and password to store the Application stack Docker Images.
    - Docker Swarm Manager Certificates and IP. 
    - You can execute the [script](./swarm-certs.sh) to generate docker swarm certificates.
