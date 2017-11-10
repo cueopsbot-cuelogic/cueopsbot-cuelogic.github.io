@@ -1,52 +1,59 @@
-version: "3.1"
-services:
+# NOTE:- below is the sample compose.yml file, you can always refer to it while creating compose file for your stack 
+# multiple services can be added according to 
+# your convinience , there no kind of boundation or limitation in terms of services. 
+# here we are providing most common used parameters to deploy a service stack using compose file.
+# most commonly three BLOCK are going to be used SERVICE , NETWORKS and VOLUMES
+# =========================================================================================
+# PLEASE MIND THE "indentation" AND "white spaces" AS IT MATTERS A LOT IN YML FILE. 
+# PLEASE READ COMMENTED LINES CAREFULLY
+# ===========================================================================================
 
-  redis:
-    image: redis:alpine
+
+version: "3.1"                                        #it can be remained unchanged
+services:                                             #this will work as service block , all the service will be added under this block
+
+  servicename:                                        # your service name eg:- vote, web-client , webapp 
+    image: {{servicename}}                            #here image name is a variable because we are cusomized one it will be fetched on runtime, you can hardcode it if you are using docker public image 
     ports:
-      - "6379"
+      - 80:80                                           #port on which you want to access you application remove port attribute if you are using nginx as reverse proxy
+    volumes:                                           #there are two types of volumes (docker volume and bind mount)
+      - volumename:/path/to/dir/incontainer              #this will use docker volumes
+      - path/to/dir/onHost:/path/to/dir/incontainer       #this you have to create the dir on your machine which you want to mount inside container and is called bind mounts
     networks:
-      - frontend
+      - yournetworkname                                         #can name it according to your convinience can be anything  
+    env_file: .env_filename                              #give your filename or path
+    environment:                                         #this block can be used if you want to provide some variable to your containers    
+      - VARIABLE_NAME1=value    
+      - VARIABLE_NAME2=value
+    depends_on:                                                 #if your service depends on some other service you can use this
+      - parentservicename                                       #this is the name of the service on which your current service depends (i.e. :- your current service wont start until parent service is started  
     labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-redis"
+        com.docker.stack.namespace: "projectname-environmentname"    #this will used for monitoring
+        com.docker.service.name: "projectname-servicenamee"        # please update projectname and servicename with actual values
     deploy:
-      replicas: 1
-      update_config:
+      mode: global                                                    #global means your container will run on evry host either you can use "mode" or "replicas" not both
+      replicas: 1                                                      #number of replicas you want of your service , either you can use "mode" or "replicas" not both
+      update_config:  
         parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-      labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-redis"  
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
-        tag: "redis"     
-  db:
-    image: postgres:9.4
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    networks:
-      - backend
-    labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-db"
-    deploy:
+        delay: 10s                                                       #it means if your service has  multiple instance and if you update it will put 10 sec of delay on each instance
+      restart_policy:  
+        condition: on-failure                                             #it will resatrt your container if it fails
+        delay: 10s                                                        #optional
+        max_attempts: 3                                                    #opstional
+        window: 120s                                                       #optional
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role == manager]                                 #if you want to put constraint that where should your container run, there are more constraints you can check docker documentation
       labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-db"
-    logging:
-      driver: gelf
+        com.docker.stack.namespace: "projectname-environmentName"
+        com.docker.service.name: "projectName-ServiceName"  
+    logging:                                                                 #add this block it is for minitoring nad logging
+      driver: gelf                                                          #no need to change this
       options:
-        gelf-address: "udp://127.0.0.1:12201"
-        tag: "db"
+        gelf-address: "udp://127.0.0.1:12201"                                  #it can also be same as the value
+        tag: "servicename"                                                     #give your service name
+  
   vote:
-    image: cueops/vote:master-1
+    image: {{vote}}                                                          #this will be avariable so you just have to name the variable same as your service name
     ports:
       - 5000:80
     networks:
@@ -70,64 +77,11 @@ services:
       options:
         gelf-address: "udp://127.0.0.1:12201"
         tag: "vote"
-  result:
-    image: cueops/result:master-6
-    ports:
-      - 5001:80
-    networks:
-      - backend
-    depends_on:
-      - db
-    labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-result"
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-      labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-result"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
-        tag: "result"
+          
 
-  worker:
-    image: cueops/worker:master-1
-    networks:
-      - frontend
-      - backend
-    labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-worker"
-    deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=VOTING]
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
-      placement:
-        constraints: [node.role == manager]
-      labels:
-        com.docker.stack.namespace: "voteapp-dev"
-        com.docker.service.name: "voteapp-worker"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
-        tag: "worker"        
-
-networks:
-  frontend:
-  backend:
+networks:                                                       #this the network block
+  yournetworkname1:                                             #you can declare multiple network and use multiple network in single compose
+  yournetworkname2:
 
 volumes:
-  db-data:
+  yourvolumename:                                   #declare the volume here if you are using it in any service above, no need to declare if you are using bind mounts as a volume
