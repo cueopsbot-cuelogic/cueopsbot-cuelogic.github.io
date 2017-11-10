@@ -20,12 +20,12 @@ CueOps gives you out of the box services that assist you when building Microserv
   
 ## 3. Alerts and Notification receivers
    - CueOps supports several tools like Slack, Email etc.
-  ## Slack
+   - Slack
       - Slack Username
       - Slack Channel name (Ex. #notification)
       - Slack incoming webhhok url. 
       
- ### Obtaining Slack incoming webhhok url
+ ## Obtaining Slack incoming webhhok url
 
       To configure a webhook and obtain a URL, go to https://[your company].slack.com/services/new/incoming-webhook, select a
 channel you would like the messages to be posted to and click on "Add Incoming WebHooks Integration" button.
