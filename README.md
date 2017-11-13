@@ -60,8 +60,7 @@ You can make POST api call with any tools like curl, Postman etc. An API call us
 CueOps provide Monitoring and Logging stacks deployment out of the box along with CI/CD. It will minimize the application downtime drastically. You will have access of all the Application and Infrastructure Logs and Metrics in a single dashboard.
 
 Let's further explore the Logging and Monitoring stacks separately, 
-
-   ## - Logging
+## - Logging
 
 Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
 
