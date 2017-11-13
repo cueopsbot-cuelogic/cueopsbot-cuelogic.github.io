@@ -77,13 +77,17 @@ Monitoring is the first step towards optimizing and improving performance.It's t
 
 CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.io/docs/prometheus/latest/installation/)** as the back end storage service and REST API and then **[Grafana](https://grafana.com/)** as the console to view, query and analyze metrics and then **[Slack](https://slack.com/)** as alerts and notifications receivers.
 
-**Grafana Dashboards View**
+**Overall Docker Swarm Cluster Metrics Dashboard**
 
-![Overall Docker Swarm Cluster Monitoring](./screenshots/grafana-1.png)
+![](./screenshots/grafana-1.png)
 
-![Docker containers CPU metrics](./screenshots/grafana-2.png)
+**Docker containers CPU metrics**
 
-![Docker containers Memory metrics](./screenshots/grafana-2.png)
+![](./screenshots/grafana-2.png)
+
+**Docker containers Memory metrics**
+
+![](./screenshots/grafana-2.png)
 
 
 
