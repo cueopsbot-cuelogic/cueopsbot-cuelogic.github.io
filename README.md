@@ -54,5 +54,42 @@ Does your project meets all the prerequisites? Let's get started with the integr
 You can make POST api call with any tools like curl, Postman etc. An API call using Postman tool has shown below:
 
 ![](./screenshots/POST-api-example.png)
+
+## Logging and Monitoring 
+
+CueOps provide Monitoring and Logging stacks deployment out of the box along with CI/CD. It will minimize the application downtime drastically. You will have access of all the Application and Infrastructure Logs and Metrics in a single dashboard.
+
+Let's further explore the Logging and Monitoring stacks separately, 
+
+## Logging 
+
+Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
+
+CueOps Logging Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
+
+- **Kibana Dashboard View** 
+
+![](./screenshots/kibana.png)
+
+## Monitoring
+
+Monitoring is the first step towards optimizing and improving performance.It's the most crucial thing when you deploying your application as microservices. 
+
+CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.io/docs/prometheus/latest/installation/)** as the back end storage service and REST API and then **[Grafana](https://grafana.com/)** as the console to view, query and analyze metrics and then **[Slack](https://slack.com/)** as alerts and notifications receivers.
+
+**Overall Docker Swarm Cluster Metrics Dashboard**
+
+![](./screenshots/grafana-1.png)
+
+**Docker containers CPU metrics**
+
+![](./screenshots/grafana-2.png)
+
+**Docker containers Memory metrics**
+
+![](./screenshots/grafana-3.png)
+
+
+
    
 

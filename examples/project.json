@@ -1,0 +1,91 @@
+{
+    "name": "myapp",
+    "scm": {
+       
+        "organisation": "acmetech",
+        "apiUrl": "https://api.github.com/",
+        "auth": {
+            "username": "jeff-acmetech",
+            "password": "jeffthedev12"
+        	},
+        "repos": [{
+                "name": "worker",
+                "url": "https://github.com/acmetech/worker.git",
+    			"environments": [{
+			            "name": "prod",
+			            "branch": "master",
+			            "swarm_ip": "xx.xxx.xx.xx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9==",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9"
+			        },
+			        {
+			            "name": "dev",
+			            "branch": "develop",
+			            "swarm_ip": "xx.xxx.xx.xxx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9=",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9=="
+			        }
+			    ]
+            },
+            {
+                "name": "vote",
+                "url": "https://github.com/acmetech/vote.git",
+    			"environments": [{
+			            "name": "prod",
+			            "branch": "master",
+			            "swarm_ip": "xx.xxx.xx.xxx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9=",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9=="
+			        },
+			        {
+			            "name": "dev",
+			            "branch": "develop",
+			            "swarm_ip": "xx.xxx.xx.xxx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9=",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9=="
+			        }
+			    ]
+            },
+            {
+                "name": "result",
+                "url": "https://github.com/acmetech/result.git",
+    			"environments": [{
+			            "name": "prod",
+			            "branch": "master",
+			            "swarm_ip": "xx.xxx.xx.xxx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9=",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9=="
+			        },
+			        {
+			            "name": "dev",
+			            "branch": "develop",
+			            "swarm_ip": "xx.xxx.xx.xxx",
+			            "cacert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenARRATEDCERTWHICHLOOKSLIKEJUNKDONTUSEITITISUSELESSOHBOYHTHISISFUNqbDFQUXNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=",
+    					"cert":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OVm92aWRadzZ2bEtk0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0XNBDQo1ZOERBZkEwR0NEaOUhyRHFtRXpGb29OVm9=",
+    					"key":"KS0tLSvpNemRhTUJveEOUFUthisisrubbishgenTHISyRHFtRXpGb29OTONSANDTonSOFGARBAGEISWRITTENHEREJUSTRANDOMBUNCHOFLETTERSISWRITTENWHERENEaOUhyRHFtRXpGb29OVm9=="
+			        }
+			    ]
+            }
+        ],
+		"opsrepo":{
+			"url": "https://github.com/acmetech/myapp-ops.git",
+			"name": "myapp-ops"
+		}
+    },
+     "slack": {
+        "username": "row-bot",
+        "channel": "#acme-channel",
+        "token": "TOT@l/RanD0MlYgeNErT3DC3R#5"
+    },
+    "dockerHub":{
+    	"username":"acmeuser",
+    	"password":"acme@123",
+    	"repo":"http://cc.com"
+    	}
+    
+}

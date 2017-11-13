@@ -6,6 +6,7 @@
 # =========================================================================================
 # PLEASE MIND THE "indentation" AND "white spaces" AS IT MATTERS A LOT IN YML FILE. 
 # PLEASE READ COMMENTED LINES CAREFULLY
+# A COMPOSE FILE IS UPLOADED IN "examples" folder  which can be used and values can be replaced according to your requirement
 # ===========================================================================================
 
 
@@ -13,7 +14,7 @@ version: "3.1"                                        #it can be remained unchan
 services:                                             #this will work as service block , all the service will be added under this block
 
   servicename:                                        # your service name eg:- vote, web-client , webapp 
-    image: {{servicename}}                            #here image name is a variable because we are cusomized one it will be fetched on runtime, you can hardcode it if you are using docker public image 
+    image: {{servicename}}                            #here image name is a variable because we are using customized one it will be fetched on runtime, you can hardcode it if you are using docker public image 
     ports:
       - 80:80                                           #port on which you want to access you application remove port attribute if you are using nginx as reverse proxy
     volumes:                                           #there are two types of volumes (docker volume and bind mount)
@@ -46,14 +47,14 @@ services:                                             #this will work as service
       labels:
         com.docker.stack.namespace: "projectname-environmentName"
         com.docker.service.name: "projectName-ServiceName"  
-    logging:                                                                 #add this block it is for minitoring nad logging
+    logging:                                                                 #add this block it is for minitoring and logging
       driver: gelf                                                          #no need to change this
       options:
         gelf-address: "udp://127.0.0.1:12201"                                  #it can also be same as the value
         tag: "servicename"                                                     #give your service name
   
   vote:
-    image: {{vote}}                                                          #this will be avariable so you just have to name the variable same as your service name
+    image: {{vote}}                                                          #this will be a variable so you just have to name the variable same as your service name
     ports:
       - 5000:80
     networks:

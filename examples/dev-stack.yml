@@ -1,0 +1,127 @@
+version: "3.1"
+services:
+
+  redis:
+    image: redis:alpine
+    depends_on:
+      - vote
+      - db
+     
+    ports:
+      - 6379:6379
+    volumes:
+      - /acme/dev/redis-logs:/var/log/apache2/
+    networks:
+      - dev_frontend
+    environment:
+      - VIRTUAL_HOST=auth.dev.acme.com 
+      - VIRTUAL_USER=alpha
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "dev_redis"     
+  db:
+    image: postgres:9.4
+
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+        - PORT=3000
+        - MYSQL_HOST=acme.nomansland.ie-east-8.rds.amazinaws.com
+        - MYSQL_PORT=3306
+        - MYSQL_USER=acme
+        - MYSQL_PASSWORD=XSdhh876Y
+        - MYSQL_DATABASE=acme
+        - EMAIL_FROM=acmedummy@gmail.com
+        - EMAIL_TO=acmetest@gmail.com
+        - WEB_API_URL=http://xx.xx.xxx.xxx:8x/
+        - BUCKET_FOLDER=development
+        - VIRTUAL_HOST=api.org.acme.com
+        - VIRTUAL_PORT=3000
+    networks:
+      - dev_backend 
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "dev_db"
+  vote:
+    image: {{vote}}
+
+    ports:
+      - 5000:80
+    networks:
+      - dev_frontend
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "dev_vote"
+  result:
+    image: {{result}}
+    depends_on:
+      - db
+    ports:
+      - 5001:80
+    networks:
+      - dev_backend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "dev_result"
+
+  worker:
+    image: {{worker}}
+    networks:
+      - dev_frontend
+      - dev_backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == manager]
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+        tag: "dev_worker"
+        
+ networks:
+  dev_frontend:
+  dev_backend:
+  
+volumes:
+  dev-db-data:
