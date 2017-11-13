@@ -52,6 +52,7 @@ Does your project meets all the prerequisites? Let's get started with the integr
 ## Making POST api call
 
 You can make POST with any tool like curl, Postman etc. An API call using Postman tool has shown below:
+
 ![](./POST-api-example.png)
    
 
