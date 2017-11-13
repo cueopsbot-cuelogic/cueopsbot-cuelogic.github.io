@@ -110,7 +110,7 @@ CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.
 
 ## Example files references:
 
-You can always refer to below links to use the example files for your project. 
+You can always use below sample files for your project. 
 
 1. [sample jenkins file](./examples/Jenkinsfile)
 2. [sample Docker-compose file](./examples/dev-stack.yml)
