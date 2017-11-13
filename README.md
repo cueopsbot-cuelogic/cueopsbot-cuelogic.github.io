@@ -61,15 +61,30 @@ CueOps provide Monitoring and Logging stacks deployment out of the box along wit
 
 Let's further explore the Logging and Monitoring stacks separately, 
 
-   - **Logging** 
+## Logging 
 
 Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
 
-CueOps Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
+CueOps Logging Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
 
-   - **Kibana Dashboard** 
+   - **Kibana Dashboard View** 
 
-   ![](./screenshots/kibana.png)
+![](./screenshots/kibana.png)
+
+## Monitoring
+
+Monitoring is the first step towards optimizing and improving performance.It's the most crucial thing when you deploying your application as microservices. 
+
+CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.io/docs/prometheus/latest/installation/)** as the back end storage service and REST API and then **[Grafana](https://grafana.com/)** as the console to view, query and analyze metrics and then **[Slack](https://slack.com/)** as alerts and notifications receivers.
+
+   - **Grafana Dashboard View**
+
+![Overall Docker Swarm Cluster Monitoring (Containers + Hosts)](./screenshots/grafana-1.png)
+
+![Docker containers CPU metrics](./screenshots/grafana-2.png)
+
+![Docker containers Memory metrics](./screenshots/grafana-2.png)
+
 
 
    
