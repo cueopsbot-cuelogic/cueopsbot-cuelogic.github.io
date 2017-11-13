@@ -87,7 +87,7 @@ CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.
 
 **Docker containers Memory metrics**
 
-![](./screenshots/grafana-2.png)
+![](./screenshots/grafana-3.png)
 
 
 
