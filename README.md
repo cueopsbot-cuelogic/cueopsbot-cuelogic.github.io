@@ -43,7 +43,7 @@ On the next page you will find an automatically generated webhook URL.
    
 ## CueOps integration steps
 
-Does your project meets all the prequisites? Let's get started the integration process:
+Does your project meets all the prerequisites? Let's get started with the integration process:
 
    - Integrating your project with CueOps is just a matter of hitting an API endpoint url. Keep your project data ready in a json structure and make an POST API call to CueOps API endpoint url (34.206.196.128:3001) with valid json data. 
    - We have set basic authentication on the API endpoint. The authentication details would be shared with the projects.
