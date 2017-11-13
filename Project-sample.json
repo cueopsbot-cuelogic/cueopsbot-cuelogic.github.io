@@ -1,3 +1,9 @@
+##===========================NOTE======================================================================================##
+# this file is just for reference and for explaination purpose , a valid sample can be found in "example" folder        #
+# in there project.json can be changed according to your requirement. all the values in that json is dummy use a valid  #
+# values in your case.                                                                                                  #
+##=====================================================================================================================##
+
 {
 	"name": "Define Your Project Name",
 	"scm": {
