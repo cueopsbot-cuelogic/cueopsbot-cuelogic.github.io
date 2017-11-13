@@ -54,7 +54,7 @@ services:                                             #this will work as service
         tag: "servicename"                                                     #give your service name
   
   vote:
-    image: {{vote}}                                                          #this will be avariable so you just have to name the variable same as your service name
+    image: {{vote}}                                                          #this will be a variable so you just have to name the variable same as your service name
     ports:
       - 5000:80
     networks:
