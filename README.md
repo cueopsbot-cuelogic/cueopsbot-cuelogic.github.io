@@ -58,7 +58,7 @@ You can make POST api call with any tools like curl, Postman etc. An API call us
 ## What will happen after making an API call?
 
    - As soon as you make the API call, the reponse of API call will be returned with the status **"STARTED"**.
-   - The Projects will get the complete access of components like [Jenkins](https://jenkins.io/) as Continuous Integration tool, Stackstorm(https://stackstorm.com/) as Continuous Deployment tool, [Kibana](https://www.elastic.co/products/kibana) as the front end logging tool and [Grafana](https://grafana.com/) as the console to view, query and analyze metrics tool.
+   - The Projects will get the complete access of components like [Jenkins](https://jenkins.io/) as Continuous Integration tool, [Stackstorm](https://stackstorm.com/) as Continuous Deployment tool, [Kibana](https://www.elastic.co/products/kibana) as the front end logging tool and [Grafana](https://grafana.com/) as the console to view, query and analyze metrics tool.
    - To have access of all of these tools, you have to provide authentication details like username and password. 
    - You can get the credentials to have access of all of these components by just making a **GET** API request to CueOps bootstrap API endpoint url (will be provided at project integration time).
    
