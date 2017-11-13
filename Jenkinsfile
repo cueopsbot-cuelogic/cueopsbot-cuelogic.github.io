@@ -5,7 +5,8 @@
    NOTE:- this is the sample jenkins file which mentions signiicance and use of each stage, There is no need to add all the stages 
           in single jenkins file this is just for reference.
           please read carefully the commented lines before including any stages into your jenkins file.
-          we will also include a sample jenkins file in our docs which you can directly use in your project.
+          we will also include a sample jenkins file in our docs which you can directly use in your project, as most of the stages 
+          in that sample jenkins file will be used by your project.
           this file is just for explainantion purpose. 
     ================================================================================================================================= */      
 
@@ -65,8 +66,8 @@ pipeline {
                sh "sudo docker build -t $DOCKERHUB_USR/${env.JOB_NAME}:${env.GIT_BRANCH}-${env.BUILD_NUMBER} ."
          }
         }
-        stage('Docker push') {
-           steps {
+        stage('Docker push') {                                                            //this will push image to docker hub
+           steps {                                                                        //this will push the image and trigger st2 webhook 
              sh 'env'
              sh "sudo docker push $DOCKERHUB_USR/${env.JOB_NAME}:${env.GIT_BRANCH}-${env.BUILD_NUMBER}"
              sh "curl -k http://${env.ST2_URL}/api/v1/webhooks/codecommit -d '{\"name\": \"${env.JOB_NAME}\", \"build\": {\"branch\": \"${env.GIT_BRANCH}\", \"status\": \"SUCCESS\", \"number\": \"${env.BUILD_ID}\"}}' -H 'Content-Type: application/json' -H 'st2-api-key: ${env.ST2_API_KEY}'"
