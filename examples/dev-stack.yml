@@ -10,7 +10,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - /acme/dev/acme-logs:/var/log/apache2/
+      - /acme/dev/redis-logs:/var/log/apache2/
     networks:
       - dev_frontend
     environment:
@@ -42,7 +42,7 @@ services:
         - MYSQL_DATABASE=acme
         - EMAIL_FROM=acmedummy@gmail.com
         - EMAIL_TO=acmetest@gmail.com
-        - LTI_API_URL=http://xx.xx.xxx.xxx:82/
+        - WEB_API_URL=http://xx.xx.xxx.xxx:89/
         - BUCKET_FOLDER=development
         - VIRTUAL_HOST=api.org.acme.com
         - VIRTUAL_PORT=3000
