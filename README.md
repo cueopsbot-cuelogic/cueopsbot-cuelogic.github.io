@@ -69,7 +69,7 @@ CueOps Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** 
 
 ## Kibana Dashboard 
 
-[](./screenshots/kibana.png)
+![](./screenshots/kibana.png)
 
 
    
