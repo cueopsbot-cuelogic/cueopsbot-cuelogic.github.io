@@ -49,4 +49,9 @@ Does your project meets all the prerequisites? Let's get started with the integr
    - We have set basic authentication on the API endpoint. The authentication details would be shared with the projects.
    - Well, we have created a sample json file defining the project data, which you can always refer for your projects. Sample cueops json file: [cueops.json](./Project-sample.json).
    
+## Making POST api call
+
+You can make POST with any tool like curl, Postman etc. An API call using Postman tool has shown below:
+![](./POST-api-example.png)
+   
 
