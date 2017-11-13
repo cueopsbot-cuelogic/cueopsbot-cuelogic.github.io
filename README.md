@@ -68,7 +68,7 @@ You can make POST api call with any tools like curl, Postman etc. An API call us
 
 ## Jenkins as CI tool
 
-You will have complete access your project's Jenkins dashboard by hitting url https://projectname-jenkins.cueops.io. You can see all the Jenkins jobs configured for your repositories.
+You will have complete access your project's Jenkins dashboard by hitting url https://projectname-jenkins.cueops.io and provide valid username and password which you got from GET API response. You can see all the Jenkins jobs configured for your repositories.
 
 **Jenkins Dashboard view**
 
