@@ -5,7 +5,7 @@
    NOTE:- this is the sample jenkins file which mentions signiicance and use of each stage, There is no need to add all the stages 
           in single jenkins file this is just for reference.
           please read carefully the commented lines before including any stages into your jenkins file.
-          we will also include a sample jenkins file in our docs which you can directly use in your project, as most of the stages 
+          we will also include a sample jenkins file in our docs which you can  use in your project, as most of the stages 
           in that sample jenkins file will be used by your project.
           this file is just for explainantion purpose. 
     ================================================================================================================================= */      
@@ -23,7 +23,7 @@ pipeline {
             agent any
             steps {
                 checkout scm                                                             //checkout scm step which is configured for a job in jenkins will get triggered
-                sh 'make'                                                               // 
+                sh 'make'                                                               // eg:- "npm install" can be include here
                 stash includes: '**/target/*.jar', name: 'app'                          // couple of shell commands
             }
         }
