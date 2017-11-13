@@ -47,7 +47,7 @@ Does your project meets all the prerequisites? Let's get started with the integr
 
    - Integrating your project with CueOps is just a matter of hitting an API endpoint url. Keep your project data ready in a json structure and make an POST API call to CueOps API endpoint url (34.206.196.128:3001) with valid json data. 
    - We have set basic authentication on the API endpoint. The authentication details would be shared with the projects.
-   - Well, we have created a sample json file defining the project data, which you can always refer for your projects. Sample cueops json file: [cueops.json](./Project-sample.json).
+   - Well, we have created a sample json structured file explained in detail, which you can always refer for your projects. Sample cueops json file: [cueops.json](./Project-sample.json).
    
 ## Making POST api call
 
