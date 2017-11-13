@@ -42,7 +42,7 @@ services:
         - MYSQL_DATABASE=acme
         - EMAIL_FROM=acmedummy@gmail.com
         - EMAIL_TO=acmetest@gmail.com
-        - WEB_API_URL=http://xx.xx.xxx.xxx:89/
+        - WEB_API_URL=http://xx.xx.xxx.xxx:8x/
         - BUCKET_FOLDER=development
         - VIRTUAL_HOST=api.org.acme.com
         - VIRTUAL_PORT=3000
