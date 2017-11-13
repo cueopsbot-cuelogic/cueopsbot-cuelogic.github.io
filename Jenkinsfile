@@ -1,17 +1,34 @@
+/* Below is the sample jenkins file which mainly consists of 5 block sthe mian parent block is the "PIPELINE" block ,
+   pipeline block has netsted block  eg , "environment" , "stages" and "post" , stages block has netsted block which is "steps"
+   block. stages will be executed sequentially in an order they are mentioned.
+   ====================================================================================================================
+   NOTE:- this is the sample jenkins file which mentions signiicance and use of each stage, There is no need to add all the stages 
+          in single jenkins file this is just for reference.
+          please read carefully the commented lines before including any stages into your jenkins file.
+          we will also include a sample jenkins file in our docs which you can directly use in your project.
+          this file is just for explainantion purpose. 
+    ================================================================================================================================= */      
+
+
 pipeline {
-    agent none
-    stages {
-        stage('Build') {
+    agent any
+    
+    environment {                                                                          //if you want to pass any variables for the pipeline
+      DOCKERHUB = credentials('dockerhub')                                                //credentials will be fetched from global credentials set in jenkins      
+      GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim() //this one is custom variable which can be used in later stages of the file
+    }
+    stages {                                       
+        stage('Build') {                                                                  //this is one stage which will clone the copde from our git or any scm and will make it
             agent any
             steps {
-                checkout scm
-                sh 'make'
-                stash includes: '**/target/*.jar', name: 'app' 
+                checkout scm                                                             //checkout scm step which is configured for a job in jenkins will get triggered
+                sh 'make'                                                               // 
+                stash includes: '**/target/*.jar', name: 'app'                          // couple of shell commands
             }
         }
-        stage('Test on Linux') {
+        stage('Test on Linux') {                                                       //this stage will run unit testcatses on your code
             agent { 
-                label 'linux'
+                label 'linux'                                                          //this means test will run on linux machine
             }
             steps {
                 unstash 'app' 
@@ -19,11 +36,11 @@ pipeline {
             }
             post {
                 always {
-                    junit '**/target/*.xml'
+                    junit '**/target/*.xml'                                             //this step will run junit on code 
                 }
             }
         }
-        stage('Test on Windows') {
+        stage('Test on Windows') {                                                      //this stage will run test cases on windows machine
             agent {
                 label 'windows'
             }
@@ -37,5 +54,32 @@ pipeline {
                 }
             }
         }
-    }
+        stage('Dockerhub login') {                                                      //this stage will do docker hub login
+           steps {
+               sh "sudo docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
+          }
+         }
+        stage('Docker build') {                                                         //stage for building docker images
+           steps {
+              sh 'env'
+               sh "sudo docker build -t $DOCKERHUB_USR/${env.JOB_NAME}:${env.GIT_BRANCH}-${env.BUILD_NUMBER} ."
+         }
+        }
+        stage('Docker push') {
+           steps {
+             sh 'env'
+             sh "sudo docker push $DOCKERHUB_USR/${env.JOB_NAME}:${env.GIT_BRANCH}-${env.BUILD_NUMBER}"
+             sh "curl -k http://${env.ST2_URL}/api/v1/webhooks/codecommit -d '{\"name\": \"${env.JOB_NAME}\", \"build\": {\"branch\": \"${env.GIT_BRANCH}\", \"status\": \"SUCCESS\", \"number\": \"${env.BUILD_ID}\"}}' -H 'Content-Type: application/json' -H 'st2-api-key: ${env.ST2_API_KEY}'"
+             sh "sudo docker rmi $DOCKERHUB_USR/${env.JOB_NAME}:${env.GIT_BRANCH}-${env.BUILD_NUMBER}"
+          }
+         }
+      
+      }
+        post {                                                                                              //this will cleanup the workspace after build and push is done on docker hub
+        always {
+            echo 'Janitor Cleaning the workspace'
+            deleteDir() /* clean up our workspace */
+     }
+  } 
+   
 }
