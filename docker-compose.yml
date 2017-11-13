@@ -14,7 +14,7 @@ version: "3.1"                                        #it can be remained unchan
 services:                                             #this will work as service block , all the service will be added under this block
 
   servicename:                                        # your service name eg:- vote, web-client , webapp 
-    image: {{servicename}}                            #here image name is a variable because we are cusomized one it will be fetched on runtime, you can hardcode it if you are using docker public image 
+    image: {{servicename}}                            #here image name is a variable because we are using customized one it will be fetched on runtime, you can hardcode it if you are using docker public image 
     ports:
       - 80:80                                           #port on which you want to access you application remove port attribute if you are using nginx as reverse proxy
     volumes:                                           #there are two types of volumes (docker volume and bind mount)
