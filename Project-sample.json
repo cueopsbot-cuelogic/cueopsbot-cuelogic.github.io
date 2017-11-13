@@ -72,6 +72,6 @@
 	"dockerHub": {
 		"username": "Your DockerHub Username",
 		"password": "Your DockerHUb Password",
-		"repo": "Your DockerHub Repo"
+		"repo": "Your DockerHub Repo"    #This can be left empty         
 	}
 }
