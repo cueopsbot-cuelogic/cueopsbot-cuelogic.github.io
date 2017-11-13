@@ -67,9 +67,9 @@ Logging is a key part of being able to understand Microservices and diagnose iss
 
 CueOps Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
 
-## Kibana Dashboard 
+   - **Kibana Dashboard** 
 
-![](./screenshots/kibana.png)
+   ![](./screenshots/kibana.png)
 
 
    
