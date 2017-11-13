@@ -47,7 +47,7 @@ services:                                             #this will work as service
       labels:
         com.docker.stack.namespace: "projectname-environmentName"
         com.docker.service.name: "projectName-ServiceName"  
-    logging:                                                                 #add this block it is for minitoring nad logging
+    logging:                                                                 #add this block it is for minitoring and logging
       driver: gelf                                                          #no need to change this
       options:
         gelf-address: "udp://127.0.0.1:12201"                                  #it can also be same as the value
