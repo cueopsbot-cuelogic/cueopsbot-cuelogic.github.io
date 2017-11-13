@@ -107,3 +107,11 @@ CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.
 **Docker containers Memory metrics**
 
 ![](./screenshots/grafana-3.png)
+
+## Example files references:
+
+You can always refer to below links to use the example files for your project. 
+
+1. [sample jenkins file](./examples/Jenkinsfile)
+2. [sample Docker-compose file](./examples/dev-stack.yml)
+3. [sample json structured cueops file](./examples/project.json)
