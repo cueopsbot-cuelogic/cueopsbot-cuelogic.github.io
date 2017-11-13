@@ -61,11 +61,15 @@ CueOps provide Monitoring and Logging stacks deployment out of the box along wit
 
 Let's further explore the Logging and Monitoring stacks separately, 
 
-## Logging
+   ## - Logging
 
 Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
 
 CueOps Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
+
+## Kibana Dashboard 
+
+[](./screenshots/kibana.png)
 
 
    
