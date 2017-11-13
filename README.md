@@ -72,7 +72,7 @@ You will have complete access your project's Jenkins dashboard by hitting url **
 
 **Jenkins Dashboard view**
 
-![](https://blog.openshift.com/wp-content/uploads/imported/jenkin_home.png)
+![](http://blog.arungupta.me/wp-content/uploads/2016/09/docker-pipeline-jenkins-build-run.png)
 
 ## Logging and Monitoring 
 
