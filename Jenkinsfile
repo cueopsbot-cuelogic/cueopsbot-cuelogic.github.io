@@ -18,6 +18,10 @@ pipeline {
       DOCKERHUB = credentials('dockerhub')                                                //credentials will be fetched from global credentials set in jenkins      
       GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim() //this one is custom variable which can be used in later stages of the file
     }
+   
+     tools {                         //tools if some specific tool is required to build the project , here 'nodejs-6.x' for node project
+        nodejs 'nodejs-6.x'
+     }
     stages {                                       
         stage('Build') {                                                                  //this is one stage which will clone the copde from our git or any scm and will make it
             agent any
@@ -76,7 +80,7 @@ pipeline {
          }
       
       }
-        post {                                                                                              //this will cleanup the workspace after build and push is done on docker hub
+        post {                                      //this will cleanup the workspace after build and push is done on docker hub , this is not a stage this will run after all stages are done runnnig
         always {
             echo 'Janitor Cleaning the workspace'
             deleteDir() /* clean up our workspace */
