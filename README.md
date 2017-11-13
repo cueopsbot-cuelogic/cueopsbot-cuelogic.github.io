@@ -67,7 +67,7 @@ Logging is a key part of being able to understand Microservices and diagnose iss
 
 CueOps Logging Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
 
-   - **Kibana Dashboard View** 
+- **Kibana Dashboard View** 
 
 ![](./screenshots/kibana.png)
 
@@ -77,9 +77,9 @@ Monitoring is the first step towards optimizing and improving performance.It's t
 
 CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.io/docs/prometheus/latest/installation/)** as the back end storage service and REST API and then **[Grafana](https://grafana.com/)** as the console to view, query and analyze metrics and then **[Slack](https://slack.com/)** as alerts and notifications receivers.
 
-   - **Grafana Dashboard View**
+- **Grafana Dashboard View**
 
-![Overall Docker Swarm Cluster Monitoring (Containers + Hosts)](./screenshots/grafana-1.png)
+![Overall Docker Swarm Cluster Monitoring](./screenshots/grafana-1.png)
 
 ![Docker containers CPU metrics](./screenshots/grafana-2.png)
 
