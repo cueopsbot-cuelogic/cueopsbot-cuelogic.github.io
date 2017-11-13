@@ -5,8 +5,8 @@
    NOTE:- this is the sample jenkins file which mentions signiicance and use of each stage, There is no need to add all the stages 
           in single jenkins file this is just for reference.
           please read carefully the commented lines before including any stages into your jenkins file.
-          we will also include a sample jenkins file in our docs which you can  use in your project, as most of the stages 
-          in that sample jenkins file will be used by your project.
+          we will also include a sample jenkins file in "Example" folder which you can  use in your project, as most of the stages 
+          in that sample jenkins file will be used by your project, that file is ideal for Nodejs project.
           this file is just for explainantion purpose. 
     ================================================================================================================================= */      
 
