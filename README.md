@@ -54,5 +54,19 @@ Does your project meets all the prerequisites? Let's get started with the integr
 You can make POST api call with any tools like curl, Postman etc. An API call using Postman tool has shown below:
 
 ![](./screenshots/POST-api-example.png)
+
+## Logging and Monitoring 
+
+CueOps provide Monitoring and Logging stacks deployment out of the box along with CI/CD. It will minimize the application downtime drastically. You will have access of all the Application and Infrastructure Logs and Metrics in a single dashboard.
+
+Let's further explore the Logging and Monitoring stacks separately, 
+
+## Logging
+
+Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
+
+CueOps Microservices Platform runs **[Elasticsearch](https://www.elastic.co/)** for the back end storage and **[Kibana](https://www.elastic.co/products/kibana)** as the front end and **[Logstash](https://www.elastic.co/products/logstash)** as the collector.
+
+
    
 
