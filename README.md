@@ -1,8 +1,9 @@
 ## What is CueOps?
 
-CueOps is an integrated open source DevOps and Integration Platform which works out of the box with Docker evironment and provides Continuous Integration, Continuous Delivery, Management, Logging and Monitoring.
+CueOps is an  open source DevOps and Integration Platform which works out of the box with Docker environment and provides continuous integration, delivery, management, logging and monitoring.
 
-CueOps gives you out of the box services that assist you when building Microservices, monoliths or any application in a linux container (Docker) environment and is built on top of Docker Swarm cluster.
+CueOps provides  you complete authority to build  Microservices, monoliths or any application in a Linux container (Docker) environment and is built on top of Docker Swarm cluster.
+
 
 ## PreRequisites
 ## 1. Source Control Management (GitHub)
