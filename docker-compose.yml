@@ -3,11 +3,11 @@
 # your convinience , there no kind of boundation or limitation in terms of services. 
 # here we are providing most common used parameters to deploy a service stack using compose file.
 # most commonly three BLOCK are going to be used SERVICE , NETWORKS and VOLUMES
-# =========================================================================================
-# PLEASE MIND THE "indentation" AND "white spaces" AS IT MATTERS A LOT IN YML FILE. 
-# PLEASE READ COMMENTED LINES CAREFULLY
-# A COMPOSE FILE IS UPLOADED IN "examples" folder  which can be used and values can be replaced according to your requirement
-# ===========================================================================================
+# ============================================================================================================================#
+# PLEASE MIND THE "indentation" AND "white spaces" AS IT MATTERS A LOT IN YML FILE.                                           #
+# PLEASE READ COMMENTED LINES CAREFULLY                                                                                       #
+# A COMPOSE FILE IS UPLOADED IN "examples" folder  which can be used and values can be replaced according to your requirement #
+# ============================================================================================================================#
 
 
 version: "3.1"                                        #it can be remained unchanged
@@ -40,7 +40,7 @@ services:                                             #this will work as service
       restart_policy:  
         condition: on-failure                                             #it will resatrt your container if it fails
         delay: 10s                                                        #optional
-        max_attempts: 3                                                    #opstional
+        max_attempts: 3                                                    #optional
         window: 120s                                                       #optional
       placement:
         constraints: [node.role == manager]                                 #if you want to put constraint that where should your container run, there are more constraints you can check docker documentation

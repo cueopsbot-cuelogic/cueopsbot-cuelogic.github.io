@@ -72,6 +72,6 @@
 	"dockerHub": {
 		"username": "Your DockerHub Username",
 		"password": "Your DockerHUb Password",
-		"repo": "Your DockerHub Repo"
+		"repo": "Your DockerHub Repo ,for now this value can be 'http://cc.com' , no need to provide any other value, default will work "            
 	}
 }

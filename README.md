@@ -1,8 +1,9 @@
 ## What is CueOps?
 
-CueOps is an integrated open source DevOps and Integration Platform which works out of the box with Docker evironment and provides Continuous Integration, Continuous Delivery, Management, Logging and Monitoring.
+CueOps is an  open source DevOps and Integration Platform which works out of the box with Docker environment and provides continuous integration, delivery, management, logging and monitoring.
 
-CueOps gives you out of the box services that assist you when building Microservices, monoliths or any application in a linux container (Docker) environment and is built on top of Docker Swarm cluster.
+CueOps provides  you complete authority to build  Microservices, monoliths or any application in a Linux container (Docker) environment and is built on top of Docker Swarm cluster.
+
 
 ## PreRequisites
 ## 1. Source Control Management (GitHub)
@@ -45,15 +46,34 @@ On the next page you will find an automatically generated webhook URL.
 
 Does your project meets all the prerequisites? Let's get started with the integration process:
 
-   - Integrating your project with CueOps is just a matter of hitting an API endpoint url. Keep your project data ready in a json structure and make an POST API call to CueOps API endpoint url (34.206.196.128:3001) with valid json data. 
+   - Integrating your project with CueOps is just a matter of hitting an API endpoint url. Keep your project data ready in a json structure and make an POST API call to CueOps bootstrap API endpoint url (will be provided at project integration time) with valid json data. 
    - We have set basic authentication on the API endpoint. The authentication details would be shared with the projects.
    - Well, we have created a sample json structured file explained in detail, which you can always refer for your projects. find the sample json body structure [here](./Project-sample.json).
    
-## Making POST api call
+## How to make POST api call?
 
 You can make POST api call with any tools like curl, Postman etc. An API call using Postman tool has shown below:
 
 ![](./screenshots/POST-api-example.png)
+
+## What will happen after making an API call?
+
+   - As soon as you make the API call, the reponse of API call will be returned with the status **"STARTED"**.
+   - The Projects will get the complete access of components like [Jenkins](https://jenkins.io/) as Continuous Integration tool, [Stackstorm](https://stackstorm.com/) as Continuous Deployment tool, [Kibana](https://www.elastic.co/products/kibana) as the front end logging tool and [Grafana](https://grafana.com/) as the console to view, query and analyze metrics tool.
+   - To have access of all of these tools, you have to provide authentication details like username and password. 
+   - You can get the credentials to have access of all of these components by just making a **GET** API request to CueOps bootstrap API endpoint url (will be provided at project integration time).
+   
+**API GET response view**
+
+![](./screenshots/api-get.png)
+
+## Jenkins as CI tool
+
+You will have complete access your project's Jenkins dashboard by hitting url **https://projectname-jenkins.cueops.io** and provide valid username and password which you got from GET API response. You can see all the Jenkins jobs configured for your repositories.
+
+**Jenkins Dashboard view**
+
+![](http://blog.arungupta.me/wp-content/uploads/2016/09/docker-pipeline-jenkins-build-run.png)
 
 ## Logging and Monitoring 
 
@@ -89,7 +109,11 @@ CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.
 
 ![](./screenshots/grafana-3.png)
 
+## Example files references:
 
+You can always use below sample files for your project. 
 
-   
-
+1. [sample jenkins file](./examples/Jenkinsfile)
+2. [sample Docker-compose file](./examples/dev-stack.yml)
+3. [sample json structured cueops file](./examples/project.json)
+4. [Infra Health check script](./validate-prerequisite.sh)
