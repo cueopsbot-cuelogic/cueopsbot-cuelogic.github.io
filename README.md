@@ -117,3 +117,4 @@ You can always use below sample files for your project.
 2. [sample Docker-compose file](./examples/dev-stack.yml)
 3. [sample json structured cueops file](./examples/project.json)
 4. [Infra Health check script](./validate-prerequisite.sh)
+5. [Logging and Monitoring stack](./Logging-Monitoring.zip)
