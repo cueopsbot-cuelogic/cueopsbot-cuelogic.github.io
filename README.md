@@ -113,7 +113,7 @@ CueOps monitoring Microservices Platform uses **[Prometheus](https://prometheus.
 
 1. Download the Logging and Monitoring stack zip file. To download the zip file Click [here](./Logging-Monitoring.zip).
 2. Extract the Zip file and push the extracted folder to your **ops git repository**.
-3. Go to the folder **composefiles**, edit the logging and monitoring compose files and change the bind volumes path where you have mounted gluster root directory. For example if your gluster root directory is **/mnt** then you can change the path like /mnt/dockerdata/prometheus/data. 
+3. Go to the folder **composefiles**, edit the logging and monitoring compose files and change the bind volumes path where you have mounted gluster root directory. For example if your gluster root directory is **/mnt** then you can change the path like **/mnt/dockerdata/prometheus/data**. 
 4. All the configuration files related to Logging and Monitoring stacks are kept in **config** and **alertfiles** folder. 
 5. Make sure you copy all the configuration files to relevant path specified in **docker-compose-monitoring.yml** and **docker-compose-logging.yml** files. 
 6. Edit the files **alertmanagerconfig.yml**, **elastrules.error.yaml** and replace the correct slack details like Token, username and Channel name. 
