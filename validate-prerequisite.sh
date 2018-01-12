@@ -23,18 +23,18 @@ else
 fi
 
 
-sleep 3
-echo -e "\n\n"
-echo "------------------------------------------------------------"
-echo "***** Validating if Docker Compose installed *****"
-echo "------------------------------------------------------------"
-docker-compose -v
-if [ $? -eq 0 ]; then
+#sleep 3
+#echo -e "\n\n"
+#echo "------------------------------------------------------------"
+#echo "***** Validating if Docker Compose installed *****"
+#echo "------------------------------------------------------------"
+#docker-compose -v
+#if [ $? -eq 0 ]; then
 	
-	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Compose installed..."
-else
-	echo -e "${red}\xE2\x9D\x8C ${reset}Docker Compose not found..."
-fi
+#	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Compose installed..."
+#else
+#	echo -e "${red}\xE2\x9D\x8C ${reset}Docker Compose not found..."
+#fi
 
 
 sleep 3
