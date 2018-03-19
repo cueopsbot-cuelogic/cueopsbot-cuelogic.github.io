@@ -127,3 +127,4 @@ You can always use below sample files for your project.
 3. [sample json structured cueops file](./examples/project.json)
 4. [Infra Health check script](./validate-prerequisite.sh)
 5. [Logging and Monitoring stack](./Logging-Monitoring.zip)
+6. [template](./template.json)

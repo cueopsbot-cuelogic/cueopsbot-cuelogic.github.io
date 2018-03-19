@@ -1,0 +1,13 @@
+{
+    "type": "stack",
+    "title": "CueOps",
+    "description": "CueOps stack",
+    "note": "Deploys CueOps components",
+    "categories": ["DevOps Accelerator"],
+    "platform": "linux",
+    "logo": "https://github.com/cueopsbot-cuelogic/cueopsbot-cuelogic.github.io/blob/master/screenshots/cueops_logo.png",
+    "repository": {
+      "url": "https://github.com/dockersamples/example-voting-app.git",
+      "stackfile": "docker-stack.yml"
+    }
+}
