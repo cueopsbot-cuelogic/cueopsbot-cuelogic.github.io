@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -45,10 +44,10 @@ echo "------------------------------------------------------------"
 
 if [ -f ca.pem ]; then
 	echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
-    else
+else
 	echo "exporting docker over TCP port 2376....!"
 	cd /home/ubuntu
-	export ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
+	export ip=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4/)
 	openssl genrsa -out ca-key.pem 4096
 	openssl req -new -x509 -nodes -days 365 -subj "/CN=${HOSTNAME}" -key ca-key.pem -sha256 -out ca.pem	
 	openssl genrsa -out server-key.pem 4096
