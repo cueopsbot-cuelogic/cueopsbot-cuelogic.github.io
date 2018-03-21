@@ -128,3 +128,4 @@ You can always use below sample files for your project.
 4. [Infra Health check script](./validate-prerequisite.sh)
 5. [Logging and Monitoring stack](./Logging-Monitoring.zip)
 6. [template](./template.json)
+7. [setup CueOps](./setup.sh)
