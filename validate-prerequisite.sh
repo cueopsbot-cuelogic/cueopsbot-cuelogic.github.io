@@ -32,7 +32,7 @@ else
     $(lsb_release -cs) \
     stable"
     sudo apt-get update
-    sudo apt-get install -y docker-ce
+    sudo apt-get install docker-ce=17.12.1~ce-0~ubuntu
     echo -e "${green}\xE2\x9C\x94 ${reset}Docker installed..."
 fi
 
@@ -71,3 +71,6 @@ else
 fi 
 
 
+sudo groupadd docker 
+sudo gpasswd -a $USER docker 
+sudo /usr/bin/newgrp docker

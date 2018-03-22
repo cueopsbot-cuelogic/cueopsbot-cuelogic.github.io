@@ -47,26 +47,35 @@ if [ $? -eq 0 ]; then
 		sudo service docker stop
 		sudo nohup dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
 	      	echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
-        fi       
+    fi       
 else
 	echo -e "${red}\xE2\x9D\x8C ${reset}Docker not found... installing now !!"
 	sudo apt-get update
-        sudo apt-get install -y apt-transport-https 
-        sudo apt-get install -y ca-certificates 
-        sudo apt-get install -y  curl 
-        sudo apt-get install -y software-properties-common
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
-        sudo apt-get update
-        sudo apt-get install -y docker-ce
-        echo -e "${green}\xE2\x9C\x94 ${reset}Docker installed..."
+    sudo apt-get install -y apt-transport-https 
+    sudo apt-get install -y ca-certificates 
+    sudo apt-get install -y  curl 
+    sudo apt-get install -y software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+    sudo apt-get update
+    sudo apt-get install -y docker-ce
+    echo -e "${green}\xE2\x9C\x94 ${reset}Docker installed..."
+    sudo groupadd docker > /dev/null 2>&1
+	sudo gpasswd -a $USER docker > /dev/null 2>&1
+	newgrp docker > /dev/null 2>&1
+	
+	if [ docker ps > /dev/null 2>&1 ]; then
+		echo "${green}Added $USER to docker group${reset}"
+	else
+		echo "Addinng $USER to docker group failed${red}"
+	fi
 
-        sleep 7
+    sleep 7
 	echo "exporting docker over TCP port 2376....!"
-        echo "--------- generating certs --------------"
+    echo "--------- generating certs --------------"
 
 	cd /home/ubuntu
 
@@ -106,18 +115,43 @@ else
 	sudo service docker stop
 	sudo dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
         echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
-
 fi 
 
 sleep 5
 if sudo docker node ls > /dev/null 2>&1; then
-	echo "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"
+	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"
+	if docker network ls | grpe cuenet > /dev/null 2>&1 && docker service ls | grep cueops-dashboard\|cueops-bootloader > /dev/null 2>&1; then
+		echo -e "${green}Cueops Stack Already started..!!"
+	else
+		sudo docker network create --driver=overlay --subnet=192.168.0.0/16 cuenet > /dev/null 2>&1
+		sudo docker service create --name mongo --network cuenet mongo:3.4
+		sudo docker service create --name mongoserver --network cuenet mongo:3.4
+		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
+		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:14
+        echo " "
+		echo " "
+		echo " "
+
+        echo "          ___| __|_  ) "
+        echo "          __| (__   /"
+        echo "          ___|\__|___|  "
+        echo "  "
+		echo "  "
+        echo " __||  |__| _ \ O )(  _|"
+        echo "(__ |L'|_| |_|| ,~ _\ \              powered by CUELOGIC PVT. LTD."
+        echo "\__||__|__| __/_| ( __/"
+
+        echo " "
+		echo " "
+		echo " "
+
+        echo -e "${green}\xE2\x9C\x94 Your Cueops-Dashboard URL is ::  http://${ip}:81${reset}"
+	fi		
 else
 	echo "Initializing Docker Swarm.."
-        sudo docker swarm init
+    sudo docker swarm init
 	sudo mkdir -p /mnt/glusterstorage
 	sudo chmod 0777 -R /mnt
-#	docker network create --driver=overlay cuenet
 	sudo docker network create --driver=overlay --subnet=192.168.0.0/16 cuenet
 	sudo docker service create --name mongo --network cuenet mongo:3.4
 	sudo docker service create --name mongoserver --network cuenet mongo:3.4
@@ -125,33 +159,30 @@ else
 #	wget https://raw.githubusercontent.com/cueopsbot-cuelogic/cueopsbot-cuelogic.github.io/master/traefik.toml
 #	docker run -d -p 8080:8080 -p 80:80 -v home/ubuntu/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
         #docker pull cueops/ui:10
-        sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
+    sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
 	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:14
 
 	echo " "
 	echo " "
 	echo " "
 
-        echo "          ___| __|_  ) "
-        echo "          __| (__   /"
-        echo "          ___|\__|___|  "
-        echo "  "
+    echo "          ___| __|_  ) "
+    echo "          __| (__   /"
+    echo "          ___|\__|___|  "
+    echo "  "
 	echo "  "
-        echo " __||  |__| _ \ O )(  _|"
-        echo "(__ |L'|_| |_|| ,~ _\ \              powered by CUELOGIC PVT. LTD."
-        echo "\__||__|__| __/_| ( __/"
+    echo " __||  |__| _ \ O )(  _|"
+    echo "(__ |L'|_| |_|| ,~ _\ \              powered by CUELOGIC PVT. LTD."
+    echo "\__||__|__| __/_| ( __/"
 
-        echo " "
+    echo " "
 	echo " "
 	echo " "
  
-        echo -e "${green}\xE2\x9C\x94 ${reset}Your Cueops-Dashboard is available on port 81 http://${ip}:81"
+    echo -e "${green}\xE2\x9C\x94 ${reset}Your Cueops-Dashboard is available on port 81 http://${ip}:81"
 fi
 
 sleep 3
-sudo groupadd docker
-sudo gpasswd -a $USER docker
-newgrp docker
 echo -e "\n\n"
 echo "------------------------------------------------------------"
 echo "***** Validating operating system limits on mmap counts *****"
@@ -161,4 +192,3 @@ echo "Current operating system limit ${red}${CURRENT_MAP_COUNT}${reset} is likel
 echo "Increasing the limits to run Elasticsearch container to avoid out of memory exceptions.."
 INCREASED_MAP_COUNT=$(sudo sysctl -w vm.max_map_count=262144)
 echo -e "updated map count limit : ${green}\xE2\x9C\x94 ${INCREASED_MAP_COUNT}${reset}"
-
