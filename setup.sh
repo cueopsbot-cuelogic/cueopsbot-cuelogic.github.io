@@ -61,18 +61,9 @@ else
     $(lsb_release -cs) \
     stable"
     sudo apt-get update
-    sudo apt-get install -y docker-ce
+    sudo apt-get install docker-ce=17.12.1~ce-0~ubuntu
     echo -e "${green}\xE2\x9C\x94 ${reset}Docker installed..."
-    sudo groupadd docker > /dev/null 2>&1
-	sudo gpasswd -a $USER docker > /dev/null 2>&1
-	newgrp docker > /dev/null 2>&1
 	
-	if [ docker ps > /dev/null 2>&1 ]; then
-		echo "${green}Added $USER to docker group${reset}"
-	else
-		echo "Addinng $USER to docker group failed${red}"
-	fi
-
     sleep 7
 	echo "exporting docker over TCP port 2376....!"
     echo "--------- generating certs --------------"
@@ -192,3 +183,7 @@ echo "Current operating system limit ${red}${CURRENT_MAP_COUNT}${reset} is likel
 echo "Increasing the limits to run Elasticsearch container to avoid out of memory exceptions.."
 INCREASED_MAP_COUNT=$(sudo sysctl -w vm.max_map_count=262144)
 echo -e "updated map count limit : ${green}\xE2\x9C\x94 ${INCREASED_MAP_COUNT}${reset}"
+
+sudo groupadd docker 
+sudo gpasswd -a $USER docker 
+newgrp docker
