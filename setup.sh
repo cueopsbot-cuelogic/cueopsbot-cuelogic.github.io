@@ -117,6 +117,8 @@ if sudo docker node ls > /dev/null 2>&1; then
 	if docker network ls | grpe cuenet > /dev/null 2>&1 && docker service ls | grep cueops-dashboard\|cueops-bootloader > /dev/null 2>&1; then
 		echo -e "${green}Cueops Stack Already started..!!"
 	else
+		sudo mkdir -p /mnt/glusterstorage
+	        sudo chmod 0777 -R /mnt
 		sudo docker network create --driver=overlay --subnet=192.168.0.0/16 cuenet > /dev/null 2>&1
 		sudo docker service create --name mongo --network cuenet mongo:3.4
 		sudo docker service create --name mongoserver --network cuenet mongo:3.4
