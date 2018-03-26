@@ -61,7 +61,7 @@ else
     $(lsb_release -cs) \
     stable"
     sudo apt-get update
-    sudo apt-get install docker-ce=17.12.1~ce-0~ubuntu
+    sudo apt-get install -y docker-ce=17.12.1~ce-0~ubuntu 
     echo -e "${green}\xE2\x9C\x94 ${reset}Docker installed..."
 	
     sleep 7
