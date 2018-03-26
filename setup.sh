@@ -22,6 +22,7 @@ if [ $? -eq 0 ]; then
 	sleep 3
 	if [ -f ca.pem ]; then
 		echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
+		sudo nohup dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
         else
 		echo "exporting docker over TCP port 2376....!"
         	echo "--------- generating certs --------------"
@@ -118,7 +119,7 @@ if sudo docker node ls > /dev/null 2>&1; then
 		sudo docker service create --name mongo --network cuenet mongo:3.4
 		sudo docker service create --name mongoserver --network cuenet mongo:3.4
 		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:23
-		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:16
+		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:17
         echo " "
 		echo " "
 		echo " "
@@ -150,8 +151,8 @@ else
 #	wget https://raw.githubusercontent.com/cueopsbot-cuelogic/cueopsbot-cuelogic.github.io/master/traefik.toml
 #	docker run -d -p 8080:8080 -p 80:80 -v home/ubuntu/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
         #docker pull cueops/ui:10
-    sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:14
+    sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:23
+	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:17
 
 	echo " "
 	echo " "
