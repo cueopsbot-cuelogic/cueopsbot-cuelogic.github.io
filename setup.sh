@@ -22,6 +22,7 @@ if [ $? -eq 0 ]; then
 	sleep 3
 	if [ -f ca.pem ]; then
 		echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
+		export ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4/)
 		sudo service docker stop
 		sudo nohup dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
         else
