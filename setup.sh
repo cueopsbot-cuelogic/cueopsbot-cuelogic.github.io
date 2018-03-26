@@ -22,6 +22,7 @@ if [ $? -eq 0 ]; then
 	sleep 3
 	if [ -f ca.pem ]; then
 		echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
+		sudo service docker stop
 		sudo nohup dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
         else
 		echo "exporting docker over TCP port 2376....!"
