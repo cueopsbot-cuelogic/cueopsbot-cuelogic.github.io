@@ -117,8 +117,8 @@ if sudo docker node ls > /dev/null 2>&1; then
 		sudo docker network create --driver=overlay --subnet=192.168.0.0/16 cuenet > /dev/null 2>&1
 		sudo docker service create --name mongo --network cuenet mongo:3.4
 		sudo docker service create --name mongoserver --network cuenet mongo:3.4
-		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:14
+		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:23
+		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:16
         echo " "
 		echo " "
 		echo " "
