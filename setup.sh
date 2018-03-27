@@ -123,8 +123,8 @@ if sudo docker node ls > /dev/null 2>&1; then
 		sudo docker service create --name mongo --network cuenet mongo:3.4
 		sudo docker service create --name mongoserver --network cuenet mongo:3.4
 		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:17
-        echo " "
+		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:18
+        	echo " "
 		echo " "
 		echo " "
 
@@ -132,7 +132,7 @@ if sudo docker node ls > /dev/null 2>&1; then
         echo "          __| (__   /"
         echo "          ___|\__|___|  "
         echo "  "
-		echo "  "
+	echo "  "
         echo " __||  |__| _ \ O )(  _|"
         echo "(__ |L'|_| |_|| ,~ _\ \              powered by CUELOGIC PVT. LTD."
         echo "\__||__|__| __/_| ( __/"
@@ -156,7 +156,7 @@ else
 #	docker run -d -p 8080:8080 -p 80:80 -v home/ubuntu/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
         #docker pull cueops/ui:10
     sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:17
+	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:18
 
 	echo " "
 	echo " "
