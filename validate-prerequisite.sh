@@ -44,8 +44,14 @@ echo "------------------------------------------------------------"
 
 if [ -f ca.pem ]; then
 	echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
+	elif sudo docker node ls > /dev/null 2>&1; then
+		echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"	
 else
-	echo "exporting docker over TCP port 2376....!"
+	docker swarm init 
+	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Initialized..!!"
+	sleep 3
+	echo -e "{green}exporting docker over TCP port 2376....!${reset}"
+	sleep 1
 	cd /home/ubuntu
 	export ip=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4/)
 	openssl genrsa -out ca-key.pem 4096
@@ -67,7 +73,7 @@ else
         echo -e "${green}\xE2\x9C\x94 ${reset}Docker certs generated..."
 	sudo service docker stop
 	sudo nohup dockerd -H=unix:///var/run/docker.sock --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=tcp://0.0.0.0:2376 &
-    echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
+        echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
 fi 
 
 
