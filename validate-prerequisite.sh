@@ -38,9 +38,9 @@ fi
 
 sleep 3
 echo -e "\n\n"
-echo "------------------------------------------------------------"
-echo "***** Validating if Docker Swarm Certs Generated *****"
-echo "------------------------------------------------------------"
+echo "----------------------------------------------------------------------------"
+echo "***** Validating if Docker Swarm installed and Certs are Generated *****"
+echo "----------------------------------------------------------------------------"
 
 if [ -f ca.pem ]; then
 	echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
