@@ -42,13 +42,17 @@ echo "--------------------------------------------------------------------------
 echo "***** Validating if Docker Swarm installed and Certs are Generated *****"
 echo "----------------------------------------------------------------------------"
 
+
+if sudo docker node ls > /dev/null 2>&1; then
+	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"
+else
+	sudo docker swarm init
+	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Initialized..!!"	
+fi
+
 if [ -f ca.pem ]; then
 	echo -e "${green}\xE2\x9C\x94 ${reset}Certs Already Generated..!!"
-	elif sudo docker node ls > /dev/null 2>&1; then
-		echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"	
 else
-	sudo docker swarm init 
-	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Initialized..!!"
 	sleep 3
 	echo -e "{green}exporting docker over TCP port 2376....!${reset}"
 	sleep 1
@@ -76,7 +80,10 @@ else
         echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
 fi 
 
-
-sudo groupadd docker 
-sudo gpasswd -a $USER docker 
-sudo /usr/bin/newgrp docker
+if cat /etc/group | grep docker > /dev/null 2>&1 && id ${USER} | grep docker > /dev/null 2>&1; then 
+	echo -e "${green}docker group already created and user ${USER} already added to docker group..${reset}"
+else
+	sudo groupadd docker 
+	sudo gpasswd -a $USER docker 
+	sudo /usr/bin/newgrp docker
+fi
