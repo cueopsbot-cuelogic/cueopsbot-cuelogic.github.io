@@ -47,7 +47,7 @@ if [ -f ca.pem ]; then
 	elif sudo docker node ls > /dev/null 2>&1; then
 		echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"	
 else
-	docker swarm init 
+	sudo docker swarm init 
 	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Initialized..!!"
 	sleep 3
 	echo -e "{green}exporting docker over TCP port 2376....!${reset}"
