@@ -9,10 +9,7 @@ echo "***** Validating and Installing prerequisites for CueOps stack deployment 
 echo "----------------------------------------------------------------------------------"
 
 sleep 3
-echo -e "\n\n"
-echo "------------------------------------------------------------"
-echo "***** Validating if Docker installed *****"
-echo "------------------------------------------------------------"
+echo -e "\n"
 
 sudo dpkg -l | grep docker > /dev/null 2>&1
 
@@ -37,11 +34,7 @@ else
 fi
 
 sleep 3
-echo -e "\n\n"
-echo "----------------------------------------------------------------------------"
-echo "***** Validating if Docker Swarm installed and Certs are Generated *****"
-echo "----------------------------------------------------------------------------"
-
+echo -e "\n"
 
 if sudo docker node ls > /dev/null 2>&1; then
 	echo -e "${green}\xE2\x9C\x94 ${reset}Docker Swarm Alredy Initialized..!!"
@@ -80,6 +73,7 @@ else
         echo -e "${green}\xE2\x9C\x94 ${reset}Docker daemon exported over TCP 2376 securely..."
 fi 
 
+sleep 3
 if cat /etc/group | grep docker > /dev/null 2>&1 && id ${USER} | grep docker > /dev/null 2>&1; then 
 	echo -e "${green}docker group already created and user ${USER} already added to docker group..${reset}"
 else
