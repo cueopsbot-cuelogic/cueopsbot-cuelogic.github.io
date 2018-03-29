@@ -75,7 +75,7 @@ fi
 
 sleep 3
 if cat /etc/group | grep docker > /dev/null 2>&1 && id ${USER} | grep docker > /dev/null 2>&1; then 
-	echo -e "${green}docker group already created and user ${USER} already added to docker group..${reset}"
+	echo -e "${green}\xE2\x9C\x94 ${reset}docker group already created and user ${USER} already added to docker group.."
 else
 	sudo groupadd docker 
 	sudo gpasswd -a $USER docker 
