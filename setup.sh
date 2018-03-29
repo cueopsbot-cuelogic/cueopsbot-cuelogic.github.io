@@ -122,8 +122,8 @@ if sudo docker node ls > /dev/null 2>&1; then
 		sudo docker network create --driver=overlay --subnet=192.168.0.0/16 cuenet > /dev/null 2>&1
 		sudo docker service create --name mongo --network cuenet mongo:3.4
 		sudo docker service create --name mongoserver --network cuenet mongo:3.4
-		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:19
+		sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:25
+		sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:21
         	echo " "
 		echo " "
 		echo " "
@@ -155,8 +155,8 @@ else
 #	wget https://raw.githubusercontent.com/cueopsbot-cuelogic/cueopsbot-cuelogic.github.io/master/traefik.toml
 #	docker run -d -p 8080:8080 -p 80:80 -v home/ubuntu/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
         #docker pull cueops/ui:10
-    sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:22
-	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:19
+    sudo docker service create --name cueops-dashboard --publish 81:3000 -e REACT_APP_MACHINE_IP=$ip --network cuenet cueops/ui:25
+	sudo docker service create --name cueops-bootloader --publish 3010:3010 -e MACHINE_IP=$ip  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --network cuenet cueops/bootloader:21
 
 	echo " "
 	echo " "
